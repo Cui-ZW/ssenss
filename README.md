@@ -1,4 +1,4 @@
 ssenss
 ======
 
-Official repository for the SSENSS
+Official repository for SSENSS
