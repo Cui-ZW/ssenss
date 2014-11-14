@@ -1,0 +1,7 @@
+*.[oa]
+*~
+*.out
+build/*
+src/ssenss
+ssenss
+*.swp

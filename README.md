@@ -1,4 +1,5 @@
 ssenss
 ======
 
-Official repository for SSENSS
+Official repository for SSENSS (The Simple Spectral Element Navier-Stokes
+Solver).

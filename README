@@ -1,0 +1,56 @@
+SSENSS
+------
+
+SSENSS (The Simple Spectral Element Navier-Stokes Solver) is a parallel
+Navier-Stokes solver based on the spectral element method, and designed to be
+used for direct numerical simulations of turbulent flow.
+
+
+Installation
+------------
+To install SSENSS you need a C compiler, an MPI library, a version of the BLAS
+libary, a version of the LAPACK library and an MPI version of the HDF5
+library.
+
+If you use gcc and openmpi (the most common alternatives on any Linux
+platform), compilation is done by issuing the "make" command in the root
+directory. For other compilers and MPI libraries, the CC, CFLAGS and LIBS
+variables must be modified by either changing the Makefile in the root
+directory or using 'make CC=c_compiler CFLAGS=compiler_flags
+LIBS=library_flags'.
+
+
+Usage
+-----
+To run a simulation, you need a setup file, a grid file and an initial
+condition file. Examples of these files are found in the "examples" folder.
+The simulation is run by using e.g. 'mpirun -np 2 ssenss' in the folder where
+the setup file is located. To run a test simulation, use the flag "--run-test"
+(e.g. 'mpirun -np 2 ssenss --run-test') or the abbreviated "-rt".
+
+A brief explanation of the parameters specified in the setup file:
+dt: Timestep
+tmax: Simulation time
+n: Polynomial order
+visc: Kinematic viscosity
+dens: Density
+gx: X-component of source term
+gy: Y-component of source term
+gz: Z-component of source term
+write_every: File writing period
+datdir: Folder to store simulation data
+gridfile: Path to gridfile
+initfile: Path to initial condition file
+
+It is possible to override some of these parameter values using command line
+flags, such as '-n' ('--n'), '-d' ('--dens'), '-v' ('--visc'), '-dt' ('--dt'),
+'-t' ('--tmax').
+
+For example, to run a test simulation with polynomial order 10 and timestep 0.01
+on 4 processors, you can use 'mpirun -np 4 ssenss -rt -n 10 -dt 0.01'.
+
+
+Contacts
+--------
+SSENSS was written by Christopher Nilsen. You can contact him at
+research@christophernilsen.no.

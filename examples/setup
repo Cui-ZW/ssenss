@@ -1,0 +1,14 @@
+#parameters {
+	dt: 0.0005;
+	tmax: 0.01;
+	n: 5;
+	visc: 1.0;
+	dens: 1.0;
+	gx: 0.0;
+	gy: 0.0;
+	gz: 0.0;
+	write_every: 20;
+	datdir: .;
+	gridfile: grid.h5;
+	initfile: init.h5;
+}
