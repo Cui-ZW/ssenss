@@ -19,6 +19,13 @@ variables must be modified by either changing the Makefile in the root
 directory or using 'make CC=c_compiler CFLAGS=compiler_flags
 LIBS=library_flags'.
 
+To compile on the NTNU computer "Vilje", you can use the following commands:
+
+$ module load intelcomp
+$ module load mpt
+$ module load hdf5
+$ make CC=icc CFLAGS='-std=c99 -O3 -xAVX' LIBS='-lmpi -mkl=sequential -lhdf5'
+
 
 Usage
 -----
