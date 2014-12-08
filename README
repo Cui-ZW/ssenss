@@ -56,6 +56,9 @@ flags, such as '-n' ('--n'), '-d' ('--dens'), '-v' ('--visc'), '-dt' ('--dt'),
 For example, to run a test simulation with polynomial order 10 and timestep 0.01
 on 4 processors, you can use 'mpirun -np 4 ssenss -rt -n 10 -dt 0.01'.
 
+Simple rectangular grids can be generated using the script
+"rectangular_grid.py" in the "misc" folder.
+
 
 Contacts
 --------
