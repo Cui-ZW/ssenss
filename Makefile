@@ -49,5 +49,6 @@ $(distdir):
 	cp src/*.h $(distdir)/src
 	cp examples/setup $(distdir)/examples
 	cp examples/*.h5 $(distdir)/examples
+	cp misc/*.py $(distdir)/misc
 
 .PHONY: default all clean dist debug release

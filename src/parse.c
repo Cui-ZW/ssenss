@@ -28,18 +28,18 @@ static int read_int(const char *val);
 
 void parse_command_arguments(int argc, char **argv, struct parameters *params)
 {
-	for (int i = 1; i < argc; i += 1) {
+	for (int i = 1; i < argc; ++i) {
 		if (!strcmp(argv[i], "-n") || !strcmp(argv[i], "--n"))
 			params->n = read_int(argv[++i]);
-		if (!strcmp(argv[i], "-d") || !strcmp(argv[i], "--dens"))
+		else if (!strcmp(argv[i], "-d") || !strcmp(argv[i], "--dens"))
 			params->dens = read_double(argv[++i]);
-		if (!strcmp(argv[i], "-v") || !strcmp(argv[i], "--visc"))
+		else if (!strcmp(argv[i], "-v") || !strcmp(argv[i], "--visc"))
 			params->visc = read_double(argv[++i]);
-		if (!strcmp(argv[i], "-dt") || !strcmp(argv[i], "--dt"))
+		else if (!strcmp(argv[i], "-dt") || !strcmp(argv[i], "--dt"))
 			params->dt = read_double(argv[++i]);
-		if (!strcmp(argv[i], "-t") || !strcmp(argv[i], "--tmax"))
+		else if (!strcmp(argv[i], "-t") || !strcmp(argv[i], "--tmax"))
 			params->tmax = read_double(argv[++i]);
-		if (!strcmp(argv[i], "-rt") || !strcmp(argv[i], "--run-test"))
+		else if (!strcmp(argv[i], "-rt") || !strcmp(argv[i], "--run-test"))
 			params->test = 1;
 	}
 }
@@ -48,27 +48,27 @@ void set_parameter_value(struct parameters *params, char *name, char *val)
 {
 	if (!strcmp(name, "dt"))
 		params->dt = read_double(val);
-	if (!strcmp(name, "tmax"))
+	else if (!strcmp(name, "tmax"))
 		params->tmax = read_double(val);
-	if (!strcmp(name, "visc"))
+	else if (!strcmp(name, "visc"))
 		params->visc = read_double(val);
-	if (!strcmp(name, "dens"))
+	else if (!strcmp(name, "dens"))
 		params->dens = read_double(val);
-	if (!strcmp(name, "gx"))
+	else if (!strcmp(name, "gx"))
 		params->gx = read_double(val);
-	if (!strcmp(name, "gy"))
+	else if (!strcmp(name, "gy"))
 		params->gy = read_double(val);
-	if (!strcmp(name, "gz"))
+	else if (!strcmp(name, "gz"))
 		params->gz = read_double(val);
-	if (!strcmp(name, "n"))
+	else if (!strcmp(name, "n"))
 		params->n = read_int(val);
-	if (!strcmp(name, "write_every"))
+	else if (!strcmp(name, "write_every"))
 		params->write_every = read_int(val);
-	if (!strcmp(name, "datdir"))
+	else if (!strcmp(name, "datdir"))
 		strcpy(params->datdir, val);
-	if (!strcmp(name, "gridfile"))
+	else if (!strcmp(name, "gridfile"))
 		strcpy(params->gridfile, val);
-	if (!strcmp(name, "initfile"))
+	else if (!strcmp(name, "initfile"))
 		strcpy(params->initfile, val);
 }
 

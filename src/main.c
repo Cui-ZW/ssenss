@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Christopher Nilsen
+ * Copyright 2014, 2015 Christopher Nilsen
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
 #include "geometry.h"
 #include "deriv.h"
 #include "precon.h"
+#include "particles.h"
 
 int main(int argc, char **argv)
 {
@@ -80,6 +81,13 @@ int main(int argc, char **argv)
 	initialise_from_file(sel, params->initfile);	
 	if (params->test)
 		initialise_test(sel);
+	compute_reference_domain_velocity(sel);
+
+	/* Initialise particles
+	 */
+	struct part_params *pparams = new_particle_parameters();
+	struct plist *part = new_particle_list(pparams, sel);
+	initialise_particles(part, sel, (*sel)->nel);
 
 	/* Write initial condition to file
 	 */
@@ -98,6 +106,8 @@ int main(int argc, char **argv)
 		set_source_term(sel, Z_SOURCE, one_func, params->gz);
 		integrate_navier_stokes(sel);
 		params->wtime[1] = MPI_Wtime();
+		if ((iter % 2) == 0)
+			integrate_particle_equations(part, sel);
 		params->wtime[2] = MPI_Wtime();
 		write_log(sel);
 		if ((iter % params->write_every) == 0) {
@@ -109,6 +119,7 @@ int main(int argc, char **argv)
 
 	/* Free allocated resources and stop mpi
 	 */
+	free_particle_list(part);
 	free_basis(gll_basis);
 	free_basis(conv_basis);
 	disconnect_elements(sel);
